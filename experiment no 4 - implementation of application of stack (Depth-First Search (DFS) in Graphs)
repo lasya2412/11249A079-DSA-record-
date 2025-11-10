@@ -1,0 +1,24 @@
+def dfs(graph, start):
+    visited = set()  # To keep track of visited nodes
+    stack = [start]  # Stack to store nodes for DFS
+    
+    while stack:
+        node = stack.pop()  # Pop the top node
+        if node not in visited:
+            print(node, end=" ")  # Visit the node
+            visited.add(node)  # Mark the node as visited
+            # Push all unvisited neighbors onto the stack
+            stack.extend(neighbor for neighbor in graph[node] if neighbor not in visited)
+
+# Graph represented as an adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+
+# Perform DFS starting from 'A'
+dfs(graph, 'A')
