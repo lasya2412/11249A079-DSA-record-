@@ -1,7 +1,6 @@
 class ArrayOperations:
     def __init__(self, arr):
         self.arr = arr
-
     # 1. Traversal (Print all elements)
     def traverse(self):
         print("Array elements:")
