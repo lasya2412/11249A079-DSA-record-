@@ -1,0 +1,87 @@
+class Queue:
+    def __init__(self, size):
+        # Initialize the queue with a fixed size
+        self.size = size
+        self.queue = [None] * size  # Array to store queue elements
+        self.front = -1  # Points to the front of the queue
+        self.rear = -1   # Points to the last element of the queue
+
+    # Enqueue operation: Add element at the rear
+    def enqueue(self, value):
+        if self.is_full():
+            print("Queue is full! Cannot enqueue.")
+        else:
+            if self.front == -1:  # If queue is empty, set front to 0
+                self.front = 0
+            self.rear += 1
+            self.queue[self.rear] = value
+            print(f"Enqueued {value} to the queue.")
+
+    # Dequeue operation: Remove element from the front
+    def dequeue(self):
+        if self.is_empty():
+            print("Queue is empty! Cannot dequeue.")
+        else:
+            dequeued_value = self.queue[self.front]
+            # Shift the front to the next element
+            if self.front == self.rear:
+                self.front = self.rear = -1  # Reset to empty
+            else:
+                self.front += 1
+            print(f"Dequeued {dequeued_value} from the queue.")
+
+    # Peek operation: View the element at the front without removing it
+    def peek(self):
+        if self.is_empty():
+            print("Queue is empty!")
+        else:
+            print(f"Front element is {self.queue[self.front]}.")
+
+    # Check if the queue is empty
+    def is_empty(self):
+        return self.front == -1
+
+    # Check if the queue is full
+    def is_full(self):
+        return self.rear == self.size - 1
+
+    # Display all elements in the queue
+    def display(self):
+        if self.is_empty():
+            print("Queue is empty!")
+        else:
+            print("Queue elements: ", end="")
+            for i in range(self.front, self.rear + 1):
+                print(self.queue[i], end=" ")
+            print()
+
+# Example usage of the Queue
+queue = Queue(5)  # Create a queue of size 5
+
+# Enqueue some elements
+queue.enqueue(10)
+queue.enqueue(20)
+queue.enqueue(30)
+queue.enqueue(40)
+
+# Display the queue
+queue.display()
+
+# Dequeue an element
+queue.dequeue()
+
+# Display the queue again
+queue.display()
+
+# Peek at the front element
+queue.peek()
+
+# Enqueue more elements
+queue.enqueue(50)
+queue.enqueue(60)
+
+# Display the queue
+queue.display()
+
+# Try to enqueue when the queue is full
+queue.enqueue(70)
