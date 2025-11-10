@@ -1,0 +1,19 @@
+class Node:
+    def __init__(self, data):
+        self.data = data  # Store node data
+        self.left = None  # Pointer to left child
+        self.right = None  # Pointer to right child
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None  # Initialize the tree with no root
+
+    # Postorder Traversal (Left -> Right -> Root)
+    def postorder(self, node):
+        if node:
+            self.postorder(node.left)   # Traverse left subtree
+            self.postorder(node.right)  # Traverse right subtree
+            print(node.data, end=" ")   # Visit root
+
+# Driver code to test the postorder traversal
+if
