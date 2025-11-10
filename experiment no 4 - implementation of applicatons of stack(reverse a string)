@@ -1,0 +1,17 @@
+def reverse_string(s):
+    stack = []
+    # Push all characters onto the stack
+    for char in s:
+        stack.append(char)
+    
+    reversed_str = ''
+    # Pop characters from the stack to form the reversed string
+    while stack:
+        reversed_str += stack.pop()
+    
+    return reversed_str
+
+# Test case
+input_string = "hello"
+print(f"Original String: {input_string}")
+print(f"Reversed String: {reverse_string(input_string)}")
