@@ -1,0 +1,25 @@
+def evaluate_postfix(expression):
+    stack = []
+    
+    for char in expression:
+        if char.isdigit():
+            stack.append(int(char))  # If it's a number, push it onto the stack
+        else:
+            # Pop two operands for the operator
+            operand2 = stack.pop()
+            operand1 = stack.pop()
+            
+            if char == '+':
+                stack.append(operand1 + operand2)
+            elif char == '-':
+                stack.append(operand1 - operand2)
+            elif char == '*':
+                stack.append(operand1 * operand2)
+            elif char == '/':
+                stack.append(operand1 / operand2)
+    
+    return stack.pop()  # The final result will be the only item left in the stack
+
+# Test the function
+expression = "23*5+"
+print("Postfix Evaluation Result:", evaluate_postfix(expression))
