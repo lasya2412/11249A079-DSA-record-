@@ -3,7 +3,6 @@ class Stack:
         self.size = size  # Maximum size of the stack
         self.stack = []  # Array (list) to store stack elements
         self.top = -1  # The top index of the stack (starts at -1, as the stack is initially empty)
-
     def is_empty(self):
         # The stack is empty if the top index is -1
         return self.top == -1
