@@ -1,7 +1,6 @@
 def topological_sort(graph):
     visited = set()
     stack = []
-
     # Helper function for DFS
     def dfs(node):
         visited.add(node)
