@@ -1,0 +1,32 @@
+class Node:
+    def __init__(self, data):
+        self.data = data  # Store node data
+        self.left = None  # Pointer to left child
+        self.right = None  # Pointer to right child
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None  # Initialize the tree with no root
+
+    # Inorder Traversal (Left -> Root -> Right)
+    def inorder(self, node):
+        if node:
+            self.inorder(node.left)   # Traverse left subtree
+            print(node.data, end=" ")  # Visit root
+            self.inorder(node.right)  # Traverse right subtree
+
+# Driver code to test the inorder traversal
+if __name__ == "__main__":
+    # Create the binary tree
+    tree = BinaryTree()
+    
+    # Manually creating the binary tree structure
+    tree.root = Node(1)
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
+    tree.root.left.left = Node(4)
+    tree.root.left.right = Node(5)
+
+    # Perform Inorder Traversal
+    print("Inorder Traversal of Binary Tree:")
+    tree.inorder(tree.root)  # Output: 4 2 5 1 3
