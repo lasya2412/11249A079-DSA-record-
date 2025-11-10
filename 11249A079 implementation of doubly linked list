@@ -1,0 +1,44 @@
+Class DoublyLinkedList:
+    Head = None  // Points to the first node of the list
+    Tail = None  // Points to the last node of the list
+
+    // 1. Insert at the beginning
+    Function InsertAtBeginning(Data):
+        newNode = CreateNode(Data)    // Create a new node
+        If Head is None:              // If list is empty, new node becomes both head and tail
+            Head = newNode
+            Tail = newNode
+        Else:
+            newNode.Next = Head       // Set new node's next to the current head
+            Head.Prev = newNode       // Set current head's prev to the new node
+            Head = newNode            // Update head to point to the new node
+
+    // 2. Insert at the end
+    Function InsertAtEnd(Data):
+        newNode = CreateNode(Data)    // Create a new node
+        If Tail is None:              // If list is empty, new node becomes both head and tail
+            Head = newNode
+            Tail = newNode
+        Else:
+            Tail.Next = newNode       // Set current tail's next to the new node
+            newNode.Prev = Tail       // Set new node's prev to the current tail
+            Tail = newNode            // Update tail to point to the new node
+
+    // 3. Insert at a specific position
+    Function InsertAtPosition(Index, Data):
+        If Index < 0:                 // Invalid index check
+            Print "Invalid index!"
+            Return
+        If Index == 0:                // Insert at the beginning
+            Call InsertAtBeginning(Data)
+        Else:
+            current = Head
+            For i from 0 to Index-1:   // Traverse to the node before the desired index
+                If current is None:    // If index is out of bounds
+                    Print "Index out of range!"
+                    Return
+                current = current.Next
+            newNode = CreateNode(Data)  // Create a new node
+            newNode.Next = current.Next  // Set new node's next to current's next
+            If current.Next is not None:  // If not inserting at the end
+                current.Next.Prev = newNode  //
