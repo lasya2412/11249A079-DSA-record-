@@ -1,6 +1,5 @@
 Class SinglyLinkedList:
     Head = None  // Initialize the list as empty (head is None)
-
     // 1. Insert at the beginning
     Function InsertAtBeginning(Data):
         newNode = CreateNode(Data)    // Create a new node with Data
