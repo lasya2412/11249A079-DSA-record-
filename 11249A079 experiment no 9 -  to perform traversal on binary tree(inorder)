@@ -3,7 +3,6 @@ class Node:
         self.data = data  # Store node data
         self.left = None  # Pointer to left child
         self.right = None  # Pointer to right child
-
 class BinaryTree:
     def __init__(self):
         self.root = None  # Initialize the tree with no root
