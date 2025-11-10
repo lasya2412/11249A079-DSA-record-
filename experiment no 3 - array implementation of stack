@@ -1,59 +1,81 @@
 class Stack:
-    def __init__(self):
-        self.stack = []  # Initialize an empty list to represent the stack
-    
-    # Push an item onto the stack
-    def push(self, item):
-        self.stack.append(item)
-        print(f"Item {item} pushed to stack")
-    
-    # Pop an item from the stack
-    def pop(self):
-        if not self.is_empty():
-            item = self.stack.pop()
-            print(f"Item {item} popped from stack")
-            return item
-        else:
-            print("Stack is empty!")
-            return None
-    
-    # Peek at the top item of the stack
-    def peek(self):
-        if not self.is_empty():
-            return self.stack[-1]
-        else:
-            print("Stack is empty!")
-            return None
-    
-    # Check if the stack is empty
+    def __init__(self, size):
+        self.size = size  # Maximum size of the stack
+        self.stack = []  # Array (list) to store stack elements
+        self.top = -1  # The top index of the stack (starts at -1, as the stack is initially empty)
+
     def is_empty(self):
-        return len(self.stack) == 0
-    
-    # Return the size of the stack
-    def size(self):
-        return len(self.stack)
+        # The stack is empty if the top index is -1
+        return self.top == -1
 
-# Example usage:
-stack = Stack()
+    def is_full(self):
+        # The stack is full if the top index equals size - 1
+        return self.top == self.size - 1
 
-# Pushing elements onto the stack
+    def push(self, value):
+        if self.is_full():
+            print("Stack Overflow: Cannot push element, the stack is full.")
+            return
+        self.top += 1  # Increment the top index
+        self.stack.append(value)  # Add the value to the stack
+
+    def pop(self):
+        if self.is_empty():
+            print("Stack Underflow: Cannot pop element, the stack is empty.")
+            return None
+        value = self.stack.pop()  # Remove and return the top element
+        self.top -= 1  # Decrease the top index
+        return value
+
+    def peek(self):
+        if self.is_empty():
+            print("Stack is empty.")
+            return None
+        return self.stack[self.top]  # Return the top element
+
+    def display(self):
+        if self.is_empty():
+            print("Stack is empty.")
+        else:
+            print("Stack elements:", self.stack)
+
+# Test the stack implementation
+stack = Stack(5)  # Create a stack with a maximum size of 5
+
+# Push elements onto the stack
 stack.push(10)
 stack.push(20)
 stack.push(30)
 
-# Peeking the top element
-print("Top element:", stack.peek())  # Should print 30
+# Display stack elements
+stack.display()  # Output: Stack elements: [10, 20, 30]
 
-# Popping elements from the stack
-stack.pop()  # Should remove 30
-stack.pop()  # Should remove 20
+# Pop an element from the stack
+print(f"Popped element: {stack.pop()}")  # Output: Popped element: 30
 
-# Checking stack size
-print("Stack size:", stack.size())
+# Peek at the top element of the stack
+print(f"Top element: {stack.peek()}")  # Output: Top element: 20
 
-# Checking if the stack is empty
-print("Is stack empty?", stack.is_empty())
+# Push more elements
+stack.push(40)
+stack.push(50)
 
-# Popping remaining elements
-stack.pop()  # Should remove 10
-stack.pop()  # Should print "Stack is empty!"
+# Display stack elements
+stack.display()  # Output: Stack elements: [10, 20, 40, 50]
+
+# Try pushing more elements (to test stack overflow)
+stack.push(60)  # Output: Stack Overflow: Cannot push element, the stack is full.
+
+# Pop all elements
+stack.pop()
+stack.pop()
+stack.pop()
+
+# Display stack elements after popping
+stack.display()  # Output: Stack elements: [10]
+
+# Pop the last element
+stack.pop()
+
+# Try to pop from an empty stack (to test stack underflow)
+print(f"Popped element: {stack.pop()}")  # Output: Stack Underflow: Cannot pop element, the stack is empty.
