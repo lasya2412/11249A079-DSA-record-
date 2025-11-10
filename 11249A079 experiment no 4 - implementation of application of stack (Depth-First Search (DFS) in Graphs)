@@ -1,7 +1,6 @@
 def dfs(graph, start):
     visited = set()  # To keep track of visited nodes
-    stack = [start]  # Stack to store nodes for DFS
-    
+    stack = [start]  # Stack to store nodes for DFS  
     while stack:
         node = stack.pop()  # Pop the top node
         if node not in visited:
