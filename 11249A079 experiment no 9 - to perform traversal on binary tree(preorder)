@@ -1,0 +1,16 @@
+class Node:
+    def __init__(self, data):
+        self.data = data  # Store node data
+        self.left = None  # Pointer to left child
+        self.right = None  # Pointer to right child
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None  # Initialize the tree with no root
+
+    # Preorder Traversal (Root -> Left -> Right)
+    def preorder(self, node):
+        if node:
+            print(node.data, end=" ")  # Visit node (Root)
+            self.preorder(node.left)   # Traverse left subtree
+            self.preo
