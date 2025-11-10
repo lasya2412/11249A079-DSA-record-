@@ -1,0 +1,106 @@
+Class SinglyLinkedList:
+    Head = None  // Initialize the list as empty (head is None)
+
+    // 1. Insert at the beginning
+    Function InsertAtBeginning(Data):
+        newNode = CreateNode(Data)    // Create a new node with Data
+        newNode.Next = Head           // Set the new node's next to current head
+        Head = newNode                // Update head to point to the new node
+
+    // 2. Insert at the end
+    Function InsertAtEnd(Data):
+        newNode = CreateNode(Data)    // Create a new node with Data
+        If Head is None:              // If list is empty, set the new node as the head
+            Head = newNode
+        Else:
+            current = Head
+            While current.Next is not None:   // Traverse to the last node
+                current = current.Next
+            current.Next = newNode        // Link the last node to the new node
+
+    // 3. Insert at a specific position
+    Function InsertAtPosition(Index, Data):
+        If Index < 0:                  // Invalid index check
+            Print "Invalid index!"
+            Return
+        If Index == 0:                 // Insert at the beginning
+            Call InsertAtBeginning(Data)
+        Else:
+            current = Head
+            For i from 0 to Index-1:    // Traverse to the node before the desired index
+                If current is None:      // Check if index is out of bounds
+                    Print "Index out of range!"
+                    Return
+                current = current.Next
+            newNode = CreateNode(Data)    // Create a new node with Data
+            newNode.Next = current.Next   // Link new node's next to current's next
+            current.Next = newNode        // Update current node's next to the new node
+
+    // 4. Delete from the beginning
+    Function DeleteAtBeginning():
+        If Head is None:               // Check if the list is empty
+            Print "List is empty!"
+            Return
+        deletedNode = Head
+        Head = Head.Next               // Move the head to the next node
+        Delete deletedNode             // Free the memory of the deleted node
+
+    // 5. Delete from the end
+    Function DeleteAtEnd():
+        If Head is None:               // Check if the list is empty
+            Print "List is empty!"
+            Return
+        If Head.Next is None:           // Only one element in the list
+            deletedNode = Head
+            Head = None
+            Delete deletedNode
+        Else:
+            current = Head
+            While current.Next is not None:    // Traverse to the second-last node
+                previous = current
+                current = current.Next
+            previous.Next = None             // Remove the last node
+            Delete current                  // Free the memory of the deleted node
+
+    // 6. Delete by value
+    Function DeleteByValue(Value):
+        If Head is None:               // Check if the list is empty
+            Print "List is empty!"
+            Return
+        If Head.Data == Value:           // If the value is at the head
+            deletedNode = Head
+            Head = Head.Next
+            Delete deletedNode
+            Return
+        current = Head
+        While current.Next is not None:
+            If current.Next.Data == Value:    // Find the node with the value
+                deletedNode = current.Next
+                current.Next = current.Next.Next   // Remove the node from the list
+                Delete deletedNode
+                Return
+            current = current.Next
+        Print "Value not found in the list."
+
+    // 7. Traverse (Print all elements)
+    Function Traverse():
+        If Head is None:               // Check if the list is empty
+            Print "List is empty!"
+            Return
+        current = Head
+        Print "Linked List: "
+        While current is not None:
+            Print current.Data
+            current = current.Next
+
+    // 8. Search for an element
+    Function Search(Value):
+        current = Head
+        index = 0
+        While current is not None:
+            If current.Data == Value:    // If value is found
+                Print "Element " + Value + " found at index " + index
+                Return
+            current = current.Next
+            index += 1
+        Print "Element " + Value + " not found in the list."
