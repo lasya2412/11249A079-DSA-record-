@@ -1,0 +1,103 @@
+class ArrayOperations:
+    def __init__(self, arr):
+        self.arr = arr
+
+    # 1. Traversal (Print all elements)
+    def traverse(self):
+        print("Array elements:")
+        for elem in self.arr:
+            print(elem, end=" ")
+        print()
+
+    # 2. Insertion at the end of the array
+    def insert_end(self, value):
+        self.arr.append(value)
+        print(f"Inserted {value} at the end.")
+        self.traverse()
+
+    # 3. Insertion at a specific index
+    def insert_at_index(self, index, value):
+        if index < 0 or index > len(self.arr):
+            print("Invalid index")
+        else:
+            self.arr.insert(index, value)
+            print(f"Inserted {value} at index {index}.")
+            self.traverse()
+
+    # 4. Deletion by index
+    def delete_by_index(self, index):
+        if index < 0 or index >= len(self.arr):
+            print("Invalid index")
+        else:
+            deleted_value = self.arr.pop(index)
+            print(f"Deleted {deleted_value} from index {index}.")
+            self.traverse()
+
+    # 5. Deletion by value
+    def delete_by_value(self, value):
+        if value in self.arr:
+            self.arr.remove(value)
+            print(f"Deleted value {value}.")
+            self.traverse()
+        else:
+            print(f"{value} not found in the array.")
+
+    # 6. Searching for an element (Linear Search)
+    def search(self, value):
+        for index, elem in enumerate(self.arr):
+            if elem == value:
+                print(f"Element {value} found at index {index}.")
+                return index
+        print(f"Element {value} not found.")
+        return -1
+
+    # 7. Update an element at a specific index
+    def update(self, index, value):
+        if index < 0 or index >= len(self.arr):
+            print("Invalid index")
+        else:
+            self.arr[index] = value
+            print(f"Updated index {index} to value {value}.")
+            self.traverse()
+
+    # 8. Sorting the array (ascending order)
+    def sort_array(self):
+        self.arr.sort()
+        print("Sorted array:")
+        self.traverse()
+
+    # 9. Reversing the array
+    def reverse_array(self):
+        self.arr.reverse()
+        print("Reversed array:")
+        self.traverse()
+
+# Test the ArrayOperations class
+arr_ops = ArrayOperations([10, 20, 30, 40, 50])
+
+# Traverse the array
+arr_ops.traverse()
+
+# Insert at the end
+arr_ops.insert_end(60)
+
+# Insert at a specific index
+arr_ops.insert_at_index(2, 25)
+
+# Delete by index
+arr_ops.delete_by_index(3)
+
+# Delete by value
+arr_ops.delete_by_value(30)
+
+# Search for an element
+arr_ops.search(25)
+
+# Update an element at index
+arr_ops.update(2, 35)
+
+# Sort the array
+arr_ops.sort_array()
+
+# Reverse the array
+arr_ops.reverse_array()
