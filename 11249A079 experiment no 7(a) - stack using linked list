@@ -1,0 +1,43 @@
+Class Stack:
+    Top = None  // Initialize stack as empty (Top is None)
+
+    // 1. Push operation (Add element to stack)
+    Function Push(Data):
+        newNode = CreateNode(Data)   // Create a new node with the given data
+        newNode.Next = Top           // Set the new node's Next to the current top
+        Top = newNode                // Set the new node as the top of the stack
+
+    // 2. Pop operation (Remove element from stack)
+    Function Pop():
+        If Top is None:              // Check if the stack is empty
+            Print "Stack is empty!"
+            Return
+        deletedNode = Top
+        Top = Top.Next               // Move the top pointer to the next node
+        Print "Popped element:", deletedNode.Data
+        Delete deletedNode           // Free the memory of the popped node
+
+    // 3. Peek operation (View top element without removing)
+    Function Peek():
+        If Top is None:              // Check if the stack is empty
+            Print "Stack is empty!"
+            Return
+        Print "Top element:", Top.Data   // Return the top element
+
+    // 4. IsEmpty operation (Check if stack is empty)
+    Function IsEmpty():
+        If Top is None:              // If Top is None, stack is empty
+            Print "Stack is empty!"
+            Return True
+        Return False
+
+    // 5. Display the stack
+    Function Display():
+        If Top is None:              // Check if the stack is empty
+            Print "Stack is empty!"
+            Return
+        current = Top
+        Print "Stack elements are:"
+        While current is not None:   // Traverse the stack from top to bottom
+            Print current.Data       // Print each element in the stack
+            current = current.Next
