@@ -1,0 +1,18 @@
+def is_balanced(expression):
+    stack = []
+    matching_parentheses = {')': '(', '}': '{', ']': '['}
+    
+    for char in expression:
+        if char in matching_parentheses.values():
+            stack.append(char)  # Push opening brackets onto the stack
+        elif char in matching_parentheses:
+            if stack and stack[-1] == matching_parentheses[char]:
+                stack.pop()  # Pop the matching opening bracket
+            else:
+                return False  # Mismatched parentheses
+    return len(stack) == 0  # If stack is empty, parentheses are balanced
+
+# Test the function
+expressions = ["{[()]}", "{[(])}", "((()))", "[({})]"]
+for expr in expressions:
+    print(f"{expr}: {'Balanced' if is_balanced(expr) else 'Not Balanced'}")
