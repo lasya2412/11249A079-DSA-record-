@@ -1,6 +1,5 @@
 def evaluate_postfix(expression):
-    stack = []
-    
+    stack = []   
     for char in expression:
         if char.isdigit():
             stack.append(int(char))  # If it's a number, push it onto the stack
